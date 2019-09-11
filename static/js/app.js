@@ -31,23 +31,33 @@ tbody.html("");
 console.log(inputDateValue);
 console.log(tableData);
 
-switch(true){
-case inputCountryValue === "All" && inputStateValue === "All" && inputCityValue === "All" && inputShapeValue === "All":
-    var filteredDateData = tableData.filter(info =>info.datetime===inputDateValue);
-    break;
-case inputStateValue === "All" && inputCityValue === "All" && inputShapeValue === "All":
-    var filteredDateData = tableData.filter(info =>info.datetime===inputDateValue && info.country===inputCountryValue);
-    break;
-case inputCityValue === "All" && inputShapeValue === "All":
-    var filteredDateData = tableData.filter(info =>info.datetime===inputDateValue && info.country===inputCountryValue && info.state===inputStateValue);
-    break;
-case inputShapeValue === "All":
-    var filteredDateData = tableData.filter(info =>info.datetime===inputDateValue && info.country===inputCountryValue && info.state===inputStateValue && info.city===inputCityValue);
-    break;
-default:
-    var filteredDateData = tableData.filter(info =>info.datetime===inputDateValue && info.country===inputCountryValue && info.state===inputStateValue && info.city===inputCityValue && info.shape===inputShapeValue );
-    break;
+var filteredDateData = tableData;
+
+
+
+if(inputCountryValue !=='All'){
+    
+    filteredDateData = filteredDateData.filter(info => info.country===inputCountryValue);
 }
+
+if(inputStateValue !=='All'){
+    
+    filteredDateData = filteredDateData.filter(info =>info.state===inputStateValue);
+}
+
+if(inputCityValue !=='All'){
+    
+    filteredDateData = filteredDateData.filter(info =>info.city===inputCityValue);
+}
+
+if(inputShapeValue !=='All'){
+    
+    filteredDateData = filteredDateData.filter(info =>info.shape===inputShapeValue);
+}
+
+  
+    filteredDateData = filteredDateData.filter(info =>info.datetime===inputDateValue);
+
 
 filteredDateData.forEach(function(ufoSightings) {
   console.log(`this is: ${ufoSightings}`);
